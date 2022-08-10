@@ -20,15 +20,28 @@ public class ToDoController {
         return ResponseEntity.ok(toDo.toString());
     }
 
-    @GetMapping("getToDoList")
+    @GetMapping("/getToDoList")
     public ResponseEntity<List<ToDo>> getToDoList() {
         return ResponseEntity.ok(toDoRepository.findAll());
     }
 
-    @DeleteMapping("deleteToDo")
+    @DeleteMapping("/deleteToDo")
     public ResponseEntity<String> deleteToDo(@RequestParam String id) {
         toDoRepository.deleteById(id);
         return ResponseEntity.ok("ToDo deleted.");
+    }
+
+    @PutMapping("/updateToDo")
+    public ResponseEntity<String> updateToDo(@RequestParam String id) {
+        List<ToDo> toDoList = toDoRepository.findAll();
+        toDoList.forEach(item -> {
+            if (item.getId().equals(id)) {
+                item.setContent("Changed ToDo.");
+            }
+        });
+
+        toDoRepository.saveAll(toDoList);
+        return ResponseEntity.ok("ToDo Changed.");
     }
 
 }
