@@ -15,9 +15,11 @@ public class ToDo {
 
     private String statusColor;
 
-    private Date lastDay;
+    private String title;
 
     private User user;
+
+    private boolean done;
 
     public String getContent() {
         return content;
@@ -43,14 +45,6 @@ public class ToDo {
         this.statusColor = statusColor;
     }
 
-    public Date getLastDay() {
-        return lastDay;
-    }
-
-    public void setLastDay(Date lastDay) {
-        this.lastDay = lastDay;
-    }
-
     public User getUser() {
         return user;
     }
@@ -64,8 +58,25 @@ public class ToDo {
         return "ToDo{" +
                 "content='" + content + '\'' +
                 ", statusColor='" + statusColor + '\'' +
-                ", lastDay=" + lastDay +
+                ", title='" + title + '\'' +
                 ", user=" + user +
+                ", done=" + done +
                 '}';
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

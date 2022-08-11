@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -29,6 +30,19 @@ public class ToDoController {
     public ResponseEntity<String> deleteToDo(@RequestParam String id) {
         toDoRepository.deleteById(id);
         return ResponseEntity.ok("ToDo deleted.");
+    }
+
+    @PutMapping("/changeDoneStatus")
+    public ResponseEntity<String> changeDoneStatus(@RequestParam String id, boolean val) {
+        List<ToDo> toDoList = toDoRepository.findAll();
+        toDoList.forEach(item -> {
+            if (item.getId().equals(id)) {
+                item.setDone(val);
+            }
+        });
+
+        toDoRepository.saveAll(toDoList);
+        return ResponseEntity.ok("ToDo Changed.");
     }
 
     @PutMapping("/updateToDo")
