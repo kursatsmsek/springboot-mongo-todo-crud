@@ -18,7 +18,7 @@ public class ToDoController {
     @PostMapping("/createToDo")
     public ResponseEntity<String> createToDo(@RequestBody ToDo toDo) {
         toDoRepository.save(toDo);
-        return ResponseEntity.ok(toDo.toString());
+        return ResponseEntity.ok("To-Do was added successfully.");
     }
 
     @GetMapping("/getToDoList")

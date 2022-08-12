@@ -20,7 +20,6 @@ public class UserController {
     public void init() {
         User initialUser = new User();
         initialUser.setName("Adem");
-        initialUser.setSurname("Elmas");
         userRepository.save(initialUser);
     }
 
