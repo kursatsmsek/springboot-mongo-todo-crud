@@ -1,8 +1,11 @@
 package com.todo.webservice.entity;
 
+import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
 @Document
 public class User {
 
@@ -11,26 +14,11 @@ public class User {
 
     private String name;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                '}';
-    }
+    private String username;
 
-    public String getId() {
-        return id;
-    }
+    private String email;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    @ToString.Exclude
+    private String password;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
