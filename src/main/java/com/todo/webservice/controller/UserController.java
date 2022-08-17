@@ -10,7 +10,6 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -23,13 +22,19 @@ public class UserController {
         userRepository.save(initialUser);
     }
 
-    @PostMapping
+    @GetMapping("/getUserByUsername")
+    public ResponseEntity<User> getUserByUsername(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/user")
     public ResponseEntity<String> add(@RequestBody User user) {
         userRepository.save(user);
         return ResponseEntity.ok(user.toString());
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
     }
