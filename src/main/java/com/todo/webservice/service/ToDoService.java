@@ -29,13 +29,13 @@ public class ToDoService {
 
     public void deleteToDoService(String id) throws Exception {
         Optional<ToDo> toDo = toDoRepository.findById(id);
-        if (!toDo.isPresent()) throw new Exception();
+        if (toDo.isEmpty()) throw new Exception();
         toDoRepository.deleteById(id);
     }
 
     public void changeDoneStatusService(String id, boolean val) throws Exception {
         Optional<ToDo> toDo = toDoRepository.findById(id);
-        if (!toDo.isPresent()) throw new Exception();
+        if (toDo.isEmpty()) throw new Exception();
 
         List<ToDo> toDoList = toDoRepository.findAll();
         toDoList.forEach(item -> {
