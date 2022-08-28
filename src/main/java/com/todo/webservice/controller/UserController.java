@@ -43,4 +43,17 @@ public class UserController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
+        try {
+            boolean passControl = userService.login(username, password);
+            if(passControl)
+                return ResponseEntity.ok("Successfully loged in.");
+            else
+                return ResponseEntity.status(HttpStatus.NON_AUTHORITATIVE_INFORMATION).body("Something went wrong.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong.");
+        }
+    }
+
 }
