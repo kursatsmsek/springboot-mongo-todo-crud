@@ -1,8 +1,9 @@
 package com.todo.webservice.customAnnotations.uniqueUsername;
 
-import com.todo.webservice.entity.User;
+import com.todo.webservice.entity.MyUser;
 import com.todo.webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -14,7 +15,7 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        User user = userRepository.findByUsername(s);
+        MyUser user = userRepository.findByUsername(s);
         return user == null;
     }
 }

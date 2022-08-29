@@ -1,6 +1,6 @@
 package com.todo.webservice.customAnnotations.uniqueEmail;
 
-import com.todo.webservice.entity.User;
+import com.todo.webservice.entity.MyUser;
 import com.todo.webservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +14,7 @@ public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, St
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        User user = userRepository.findByEmail(s);
-        return user == null;
+        MyUser myUser = userRepository.findByEmail(s);
+        return myUser == null;
     }
 }

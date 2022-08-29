@@ -1,10 +1,13 @@
 package com.todo.webservice.repository;
 
-import com.todo.webservice.entity.User;
+import com.todo.webservice.entity.MyUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends MongoRepository<User, String> {
-   User findByUsername(String username);
+@Repository
+public interface UserRepository extends MongoRepository<MyUser, String> {
+   MyUser findByUsername(String username);
 
-   User findByEmail(String email);
+   MyUser findByEmail(String email);
+
 }

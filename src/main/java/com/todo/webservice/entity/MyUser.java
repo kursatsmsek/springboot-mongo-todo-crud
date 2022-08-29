@@ -3,17 +3,17 @@ package com.todo.webservice.entity;
 import com.todo.webservice.customAnnotations.uniqueEmail.UniqueEmail;
 import com.todo.webservice.customAnnotations.uniqueUsername.UniqueUsername;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import lombok.experimental.FieldNameConstants;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 @Document
-public class User {
+public class MyUser {
 
     @Id
     private String id;
@@ -31,10 +31,8 @@ public class User {
     @UniqueEmail(message = "Email already exists.")
     private String email;
 
-    @ToString.Exclude
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}] :;',?/*~$^+=<>]).{8,27}$",
             message = "Password must contain at least one uppercase character, one lowercase character, " +
                     "and one special character and one number.")
     private String password;
-
 }

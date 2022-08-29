@@ -17,7 +17,7 @@ public class ToDo {
 
     private String title;
 
-    private User user;
+    private MyUser user;
 
     private boolean done;
 

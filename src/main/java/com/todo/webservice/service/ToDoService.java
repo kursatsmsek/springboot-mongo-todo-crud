@@ -18,7 +18,7 @@ public class ToDoService {
         // The content area can be blank
         if (toDo.getTitle() == null || toDo.getTitle().isBlank()) throw new Exception();
         if (toDo.getStatusColor() == null || toDo.getStatusColor().isBlank()) throw new Exception();
-        if (toDo.getUser() == null || toDo.getUser().getName().isBlank()) throw new Exception();
+        //if (toDo.getUser() == null || toDo.getUser().getName().isBlank()) throw new Exception();
         // Check user presence
         toDoRepository.save(toDo);
     }
