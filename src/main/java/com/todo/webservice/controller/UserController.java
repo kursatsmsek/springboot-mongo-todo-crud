@@ -12,6 +12,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -60,16 +62,22 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String createToken(@RequestBody AuthReqModel authReqModel) throws Exception {
+    public Map<String, String> createToken(@RequestBody AuthReqModel authReqModel) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authReqModel.getUsername(), authReqModel.getPassword()));
         } catch (Exception ex) {
             throw new Exception("Incorrect username or password", ex);
         }
         final UserDetails userDetails = userService.loadUserByUsername(authReqModel.getUsername());
+        MyUser myUser = userService.getMyUserByUsername(authReqModel.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        return jwt;
+        Map<String, String> result = new HashMap<>();
+        result.put("userId", myUser.getId());
+        result.put("userName", myUser.getName());
+        result.put("token", jwt);
+
+        return result;
     }
 
 }
