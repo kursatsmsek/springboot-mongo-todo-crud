@@ -29,9 +29,6 @@ public class MyUser {
     @UniqueUsername(message = "Username already exists.")
     private String username;
 
-    @DBRef
-    private List<ToDo> toDoList;
-
     @Email(message = "Please provide a valid e-mail.")
     @UniqueEmail(message = "Email already exists.")
     private String email;
