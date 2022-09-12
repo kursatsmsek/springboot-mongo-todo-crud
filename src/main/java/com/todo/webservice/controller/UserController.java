@@ -70,7 +70,7 @@ public class UserController {
         }
         final UserDetails userDetails = userService.loadUserByUsername(authReqModel.getUsername());
         MyUser myUser = userService.getMyUserByUsername(authReqModel.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails);
+        String jwt = jwtUtil.generateToken(userDetails);
 
         Map<String, String> result = new HashMap<>();
         result.put("userId", myUser.getId());

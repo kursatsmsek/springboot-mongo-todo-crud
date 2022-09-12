@@ -4,12 +4,14 @@ import com.todo.webservice.customAnnotations.uniqueEmail.UniqueEmail;
 import com.todo.webservice.customAnnotations.uniqueUsername.UniqueUsername;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Document
@@ -26,6 +28,9 @@ public class MyUser {
     @Size(min = 3, max = 27, message = "Username size must be between 3 and 27.")
     @UniqueUsername(message = "Username already exists.")
     private String username;
+
+    @DBRef
+    private List<ToDo> toDoList;
 
     @Email(message = "Please provide a valid e-mail.")
     @UniqueEmail(message = "Email already exists.")
